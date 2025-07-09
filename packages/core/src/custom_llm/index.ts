@@ -54,7 +54,7 @@ export class CustomLLMContentGenerator implements ContentGenerator {
   async generateContentStream(
     request: GenerateContentParameters,
   ): Promise<AsyncGenerator<GenerateContentResponse>> {
-    const messages = ModelConverter.toOpenAIMessages(request.contents);
+    const messages = ModelConverter.toOpenAIMessages(request);
     const tools = extractToolFunctions(request.config);
     const stream = await this.model.chat.completions.create({
       messages,
@@ -91,7 +91,7 @@ export class CustomLLMContentGenerator implements ContentGenerator {
   async generateContent(
     request: GenerateContentParameters,
   ): Promise<GenerateContentResponse> {
-    const messages = ModelConverter.toOpenAIMessages(request.contents);
+    const messages = ModelConverter.toOpenAIMessages(request);
     const completion = await this.model.chat.completions.create({
       messages,
       stream: false,
@@ -110,7 +110,7 @@ export class CustomLLMContentGenerator implements ContentGenerator {
   async countTokens(
     request: CountTokensParameters,
   ): Promise<CountTokensResponse> {
-    const messages = ModelConverter.toOpenAIMessages(request.contents);
+    const messages = ModelConverter.toOpenAIMessages(request);
     const text = messages.map((m) => m.content).join(' ');
     const englishWords = (text.match(/[a-zA-Z]+[']?[a-zA-Z]*/g) || []).length;
     const chineseChars = (text.match(/[\u4e00-\u9fff]/g) || []).length;

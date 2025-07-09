@@ -4,7 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GenerateContentResponse, Part, ContentListUnion } from '@google/genai';
+import {
+  GenerateContentResponse,
+  Part,
+  GenerateContentParameters,
+} from '@google/genai';
 import {
   normalizeContents,
   isValidFunctionCall,
@@ -18,16 +22,19 @@ export class ModelConverter {
    * Convert Gemini content to OpenAI messages
    */
   static toOpenAIMessages(
-    contents: ContentListUnion,
+    request: GenerateContentParameters,
   ): OpenAI.Chat.Completions.ChatCompletionMessageParam[] {
-    const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [];
+    const { contents, config } = request;
+    const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
+      {
+        role: 'system',
+        content: (config?.systemInstruction as string) || '',
+      },
+    ];
     const contentsArray = normalizeContents(contents);
     for (const content of contentsArray) {
       const role =
-        content.role === 'model'
-          ? 'assistant'
-          : (content.role as 'system' | 'user');
-
+        content.role === 'model' ? 'assistant' : (content.role as string);
       const parts = content.parts || [];
       this.processTextParts(parts, role, messages);
       this.processFunctionResponseParts(parts, messages);
@@ -89,6 +96,38 @@ export class ModelConverter {
           )
           .join('\n'),
       });
+      this.processImageParts(parts, messages);
+    }
+  }
+
+  /**
+   * Convert image parts to OpenAI messages
+   */
+  private static processImageParts(
+    parts: Part[],
+    messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[],
+  ): void {
+    const imgParts = parts.filter((part) => part.inlineData);
+    if (imgParts.length > 0) {
+      const { inlineData = '' } = imgParts[0];
+      if (
+        inlineData &&
+        inlineData.mimeType?.startsWith('image/') &&
+        inlineData.data
+      ) {
+        messages.push({
+          role: 'user',
+          content: [
+            {
+              type: 'image_url',
+              image_url: {
+                url:
+                  'data:' + inlineData.mimeType + ';base64,' + inlineData.data,
+              },
+            },
+          ],
+        });
+      }
     }
   }
 
