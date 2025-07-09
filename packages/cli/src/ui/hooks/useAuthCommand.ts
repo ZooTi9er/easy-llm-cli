@@ -13,13 +13,23 @@ import {
   getErrorMessage,
 } from '@google/gemini-cli-core';
 
+function isInitAuth(settings: LoadedSettings) {
+  if (process.env.USE_CUSTOM_LLM && process.env.USE_CUSTOM_LLM !== 'false') {
+    return false;
+  }
+  if (settings.merged.selectedAuthType !== AuthType.CUSTOM_LLM_API) {
+    return settings.merged.selectedAuthType === undefined;
+  }
+  return true;
+}
+
 export const useAuthCommand = (
   settings: LoadedSettings,
   setAuthError: (error: string | null) => void,
   config: Config,
 ) => {
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(
-    settings.merged.selectedAuthType === undefined,
+    isInitAuth(settings),
   );
 
   const openAuthDialog = useCallback(() => {

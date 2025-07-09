@@ -40,6 +40,13 @@ export const Footer: React.FC<FooterProps> = ({
   const limit = tokenLimit(model);
   const percentage = promptTokenCount / limit;
 
+  let modelInfo = model;
+  if (process.env.USE_CUSTOM_LLM && process.env.CUSTOM_LLM_MODEL_NAME) {
+    modelInfo =
+      process.env.CUSTOM_LLM_MODEL_NAME +
+      `(${process.env.CUSTOM_LLM_PROVIDER})`;
+  }
+
   return (
     <Box marginTop={1} justifyContent="space-between" width="100%">
       <Box>
@@ -55,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({
       </Box>
 
       {/* Middle Section: Centered Sandbox Info */}
-      <Box
+      {/* <Box
         flexGrow={1}
         alignItems="center"
         justifyContent="center"
@@ -75,13 +82,13 @@ export const Footer: React.FC<FooterProps> = ({
             no sandbox <Text color={Colors.Gray}>(see /docs)</Text>
           </Text>
         )}
-      </Box>
+      </Box> */}
 
       {/* Right Section: Gemini Label and Console Summary */}
       <Box alignItems="center">
         <Text color={Colors.AccentBlue}>
           {' '}
-          {model}{' '}
+          {modelInfo}{' '}
           <Text color={Colors.Gray}>
             ({((1 - percentage) * 100).toFixed(0)}% context left)
           </Text>
