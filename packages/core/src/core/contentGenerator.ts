@@ -16,6 +16,7 @@ import {
 import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
 import { DEFAULT_GEMINI_MODEL } from '../config/models.js';
 import { getEffectiveModel } from './modelCheck.js';
+import { CustomLLMContentGenerator } from '../custom_llm/index.js';
 
 /**
  * Interface abstracting the core functionalities for generating content and counting tokens.
@@ -39,6 +40,7 @@ export enum AuthType {
   USE_GEMINI = 'gemini-api-key',
   USE_VERTEX_AI = 'vertex-ai',
   CLOUD_SHELL = 'cloud-shell',
+  CUSTOM_LLM_API = 'custom-llm-api',
 }
 
 export type ContentGeneratorConfig = {
@@ -107,6 +109,10 @@ export async function createContentGenerator(
       'User-Agent': `GeminiCLI/${version} (${process.platform}; ${process.arch})`,
     },
   };
+  if (config.authType === AuthType.CUSTOM_LLM_API) {
+    return new CustomLLMContentGenerator();
+  }
+
   if (
     config.authType === AuthType.LOGIN_WITH_GOOGLE ||
     config.authType === AuthType.CLOUD_SHELL

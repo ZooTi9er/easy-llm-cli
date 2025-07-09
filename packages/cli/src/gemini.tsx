@@ -122,6 +122,14 @@ export async function main() {
     }
   }
 
+  if (process.env.USE_CUSTOM_LLM) {
+    settings.setValue(
+      SettingScope.User,
+      'selectedAuthType',
+      AuthType.CUSTOM_LLM_API,
+    );
+  }
+
   setMaxSizedBoxDebugging(config.getDebugMode());
 
   await config.initialize();

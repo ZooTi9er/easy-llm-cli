@@ -7,7 +7,7 @@
 import { Schema } from '@google/genai';
 import * as ajv from 'ajv';
 
-const ajValidator = new ajv.Ajv();
+const ajValidator = new ajv.default();
 
 /**
  * Simple utility to validate objects against JSON Schemas

@@ -38,5 +38,16 @@ export const validateAuthMethod = (authMethod: string): string | null => {
     return null;
   }
 
+  if (authMethod === AuthType.CUSTOM_LLM_API) {
+    if (!process.env.CUSTOM_LLM_ENDPOINT) {
+      return 'CUSTOM_LLM_ENDPOINT environment variable not found. Add that to your .env and try again, no reload needed!';
+    }
+
+    if (!process.env.CUSTOM_LLM_MODEL_NAME) {
+      return 'CUSTOM_LLM_MODEL_NAME environment variable not found. Add that to your .env and try again, no reload needed!';
+    }
+    return null;
+  }
+
   return 'Invalid auth method selected.';
 };

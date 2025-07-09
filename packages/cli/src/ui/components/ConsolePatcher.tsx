@@ -31,9 +31,7 @@ export const useConsolePatcher = ({
         originalMethod: (...args: unknown[]) => void,
       ) =>
       (...args: unknown[]) => {
-        if (debugMode) {
-          originalMethod.apply(console, args);
-        }
+        originalMethod.apply(console, args);
 
         // Then, if it's not a debug message or debugMode is on, pass to onNewMessage
         if (type !== 'debug' || debugMode) {

@@ -1,21 +1,19 @@
-# Gemini CLI
+# Easy LLM CLI
 
-[![Gemini CLI CI](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml)
 
-![Gemini CLI Screenshot](./docs/assets/gemini-screenshot.png)
+![Easy LLM CLI Screenshot](./docs/assets/gemini-screenshot.png)
 
-This repository contains the Gemini CLI, a command-line AI workflow tool that connects to your
-tools, understands your code and accelerates your workflows.
+This repository contains the Easy LLM CLI（[Gemini Cli](https://github.com/google-gemini/gemini-cli) version of the Fork）, a command-line AI workflow tool that connects to your
+tools, understands your code and accelerates your workflows. It supports multiple LLM providers including Gemini, OpenAI, and any custom LLM API that follows OpenAI's API format.
 
-With the Gemini CLI you can:
+With the Easy LLM CLI you can:
 
-- Query and edit large codebases in and beyond Gemini's 1M token context window.
-- Generate new apps from PDFs or sketches, using Gemini's multimodal capabilities.
+- Query and edit large codebases using advanced LLM capabilities with large context windows.
+- Generate new apps from PDFs or sketches, using multimodal capabilities.
 - Automate operational tasks, like querying pull requests or handling complex rebases.
-- Use tools and MCP servers to connect new capabilities, including [media generation with Imagen,
-  Veo or Lyria](https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia)
-- Ground your queries with the [Google Search](https://ai.google.dev/gemini-api/docs/grounding)
-  tool, built in to Gemini.
+- Use tools and MCP servers to connect new capabilities.
+- Configure and use your preferred LLM provider through simple environment variables.
+- Seamlessly switch between different LLM providers without changing your workflow.
 
 ## Quickstart
 
@@ -23,49 +21,36 @@ With the Gemini CLI you can:
 2. **Run the CLI:** Execute the following command in your terminal:
 
    ```bash
-   npx https://github.com/google-gemini/gemini-cli
+   npx https://github.com/ConardLi/easy-llm-cli
    ```
 
    Or install it with:
 
    ```bash
-   npm install -g @google/gemini-cli
-   gemini
+   npm install -g easy-llm-cli
+   elc
    ```
 
 3. **Pick a color theme**
-4. **Authenticate:** When prompted, sign in with your personal Google account. This will grant you up to 60 model requests per minute and 1,000 model requests per day using Gemini.
 
-You are now ready to use the Gemini CLI!
+## Custom LLM Configuration
 
-### Use a Gemini API key:
+Easy LLM CLI supports connecting to any OpenAI-compatible LLM API. You can configure your preferred LLM using these environment variables:
 
-The Gemini API provides a free tier with [100 requests per day](https://ai.google.dev/gemini-api/docs/rate-limits#free-tier) using Gemini 2.5 Pro, control over which model you use, and access to higher rate limits (with a paid plan):
+```bash
+# Enable custom LLM support
+export CUSTOM_LLM_API_KEY="your-api-key"     # Your LLM provider API key
+export CUSTOM_LLM_ENDPOINT="https://api.your-llm-provider.com/v1"  # API endpoint
+export CUSTOM_LLM_MODEL_NAME="your-model-name"  # Model name
 
-1. Generate a key from [Google AI Studio](https://aistudio.google.com/apikey).
-2. Set it as an environment variable in your terminal. Replace `YOUR_API_KEY` with your generated key.
+# Optional parameters
+export CUSTOM_LLM_TEMPERATURE=0.7  # Temperature (default: 0)
+export CUSTOM_LLM_MAX_TOKENS=8192  # Max tokens (default: 8192)
+export CUSTOM_LLM_TOP_P=1          # Top P (default: 1)
+```
 
-   ```bash
-   export GEMINI_API_KEY="YOUR_API_KEY"
-   ```
+When these variables are set, Easy LLM CLI will use your custom LLM instead of the default Gemini model.
 
-3. (Optionally) Upgrade your Gemini API project to a paid plan on the API key page (will automatically unlock [Tier 1 rate limits](https://ai.google.dev/gemini-api/docs/rate-limits#tier-1))
-
-### Use a Vertex AI API key:
-
-The Vertex AI provides [free tier](https://cloud.google.com/vertex-ai/generative-ai/docs/start/express-mode/overview) using express mode for Gemini 2.5 Pro, control over which model you use, and access to higher rate limits with a billing account:
-
-1. Generate a key from [Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/docs/start/api-keys).
-2. Set it as an environment variable in your terminal. Replace `YOUR_API_KEY` with your generated key and set GOOGLE_GENAI_USE_VERTEXAI to true
-
-   ```bash
-   export GOOGLE_API_KEY="YOUR_API_KEY"
-   export GOOGLE_GENAI_USE_VERTEXAI=true
-   ```
-
-3. (Optionally) Add a billing account on your project to get access to [higher usage limits](https://cloud.google.com/vertex-ai/generative-ai/docs/quotas)
-
-For other authentication methods, including Google Workspace accounts, see the [authentication](./docs/cli/authentication.md) guide.
 
 ## Examples
 
@@ -75,16 +60,16 @@ You can start a project from a new directory:
 
 ```sh
 cd new-project/
-gemini
-> Write me a Gemini Discord bot that answers questions using a FAQ.md file I will provide
+elc
+> Write me a Discord bot that answers questions using a FAQ.md file I will provide
 ```
 
 Or work with an existing project:
 
 ```sh
-git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
-gemini
+git clone https://github.com/ConardLi/easy-llm-cli
+cd easy-llm-cli
+elc
 > Give me a summary of all of the changes that went in yesterday
 ```
 
@@ -105,7 +90,7 @@ having issues.
 
 ### Explore a new codebase
 
-Start by `cd`ing into an existing or newly-cloned repository and running `gemini`.
+Start by `cd`ing into an existing or newly-cloned repository and running `elc`.
 
 ```text
 > Describe the main pieces of this system's architecture.
@@ -147,10 +132,3 @@ Use MCP servers to integrate your local system tools with your enterprise collab
 > Organize my PDF invoices by month of expenditure.
 ```
 
-### Uninstall
-
-Head over to the [Uninstall](docs/Uninstall.md) guide for uninstallation instructions.
-
-## Terms of Service and Privacy Notice
-
-For details on the terms of service and privacy notice applicable to your use of Gemini CLI, see the [Terms of Service and Privacy Notice](./docs/tos-privacy.md).
