@@ -32,102 +32,100 @@
    ```
 
 3. **选择一个颜色主题**
-
 ## 自定义 LLM 配置
 
-Easy LLM CLI 支持连接到任何兼容 OpenAI 的 LLM API。您可以使用以下环境变量配置您首选的 LLM：
+Easy LLM 命令行工具支持连接到任何兼容 OpenAI 的 LLM API。你可以使用以下环境变量配置首选的 LLM：
 
 ```bash
 # 启用自定义 LLM 支持
-export CUSTOM_LLM_API_KEY="your-api-key"     # 您的 LLM 提供商 API 密钥
+export CUSTOM_LLM_API_KEY="your-api-key"     # 你的 LLM 提供商 API 密钥
 export CUSTOM_LLM_ENDPOINT="https://api.your-llm-provider.com/v1"  # API 端点
 export CUSTOM_LLM_MODEL_NAME="your-model-name"  # 模型名称
 
 # 可选参数
-export CUSTOM_LLM_TEMPERATURE=0.7  # 温度 (默认: 0)
-export CUSTOM_LLM_MAX_TOKENS=8192  # 最大令牌数 (默认: 8192)
-export CUSTOM_LLM_TOP_P=1          # Top P (默认: 1)
+export CUSTOM_LLM_TEMPERATURE=0.7  # 温度参数（默认值：0）
+export CUSTOM_LLM_MAX_TOKENS=8192  # 最大令牌数（默认值：8192）
+export CUSTOM_LLM_TOP_P=1          # Top P 参数（默认值：1）
 ```
 
-设置这些变量后，Easy LLM CLI 将使用您的自定义 LLM 而不是默认的 Gemini 模型。
+当这些变量设置后，Easy LLM 命令行工具将使用你的自定义 LLM，而非默认的 Gemini 模型。
 
 
-## 使用 Easy LLM CLI
+## 示例
 
-在命令行中输入 `elc` 即可开始使用。
+一旦 CLI 运行起来，你就可以从 shell 中与 Gemini 交互了。
 
-创建一个新项目：
+你可以从新目录开始一个项目：
 
 ```sh
 cd new-project/
 elc
-> 使用我提供的 FAQ.md 文件编写一个能回答问题的 Discord 机器人
+> 帮我写一个 Discord 机器人，它能使用我将要提供的 FAQ.md 文件来回答问题
 ```
 
-或者处理现有项目：
+或者处理一个已有的项目：
 
 ```sh
 git clone https://github.com/ConardLi/easy-llm-cli
 cd easy-llm-cli
 elc
-> 给我一份昨天所有变更的摘要
+> 给我总结一下昨天所有的变更内容
 ```
 
-### 上传文件
+### 后续步骤
 
-上传文件以生成或修改代码。只需要将文件拖放到终端窗口或者使用 `/upload` 命令：
+- 了解如何[贡献代码或从源码构建](./CONTRIBUTING.md)。
+- 探索可用的**[CLI 命令](./docs/cli/commands.md)**。
+- 如果遇到任何问题，请查看**[故障排除指南](./docs/troubleshooting.md)**。
+- 如需更全面的文档，请参阅[完整文档](./docs/index.md)。
+- 查看一些[热门任务](#热门任务)获取更多灵感。
+
+### 故障排除
+
+如果遇到问题，请查看[故障排除](docs/troubleshooting.md)指南。
+
+## 热门任务
+
+### 探索新代码库
+
+首先进入一个已有的或新克隆的仓库，然后运行 `elc`。
 
 ```text
-> /upload path/to/file.jpg
+> 描述这个系统架构的主要组成部分。
 ```
 
-Easy LLM CLI 将读取文件内容并将其包含在下一个提示中。
-
-### 工具
-
-Easy LLM CLI 包含有用的内置工具，包括：
-
-- `/help` - 显示所有可用命令
-- `/clear` - 清除对话历史
-- `/open` - 在系统默认应用程序中打开指定文件
-- `/upload` - 上传文件内容以包含在您的下一个提示中
-
-### 探索新的代码库
-
-首先 `cd` 进入一个现有的或新克隆的仓库，然后运行 `elc`。
-
 ```text
-> 描述这个系统架构的主要部分。
+> 有哪些安全机制在运行？
 ```
 
-Easy LLM CLI 将分析代码库并给您一个概述。
-
-### 创建和修改代码
-
-Easy LLM CLI 可以通过引导方式逐步修改您的代码：
+### 处理现有代码
 
 ```text
-> 将我的网站从蓝色主题改为深色主题
+> 为 GitHub 第 123 号 issue 实现初稿。
 ```
 
-或者一次性创建新功能：
-
 ```text
-> 为我的 React 应用程序创建一个登录表单
+> 帮我把这个代码库迁移到最新版本的 Java。先制定一个计划。
 ```
 
-### 工作流自动化
+### 自动化工作流
 
-使用 Easy LLM CLI 自动化常见的工作流程：
+使用 MCP 服务器将本地系统工具与企业协作套件集成。
 
 ```text
-> 从我的当前分支创建一个包含所有更改摘要的 PR
+> 制作一个幻灯片，展示过去 7 天的 git 历史，按功能和团队成员分组。
 ```
 
-### 终端集成
+```text
+> 制作一个全屏网页应用，用于墙上显示器，展示我们互动最多的 GitHub 问题。
+```
 
-对终端命令提出问题：
+### 与系统交互
 
 ```text
-> 解释这个 Docker 命令的作用： docker run -p 8080:80 -v $(pwd):/app nginx
+> 将此目录中的所有图像转换为 png 格式，并根据 exif 数据中的日期重命名。
+```
+
+```text
+> 按支出月份整理我的 PDF 发票。
 ```
