@@ -25,22 +25,22 @@ With the Easy LLM CLI you can:
 
 This tool has conducted multi-dimensional tests on various models from different providers as well as locally deployed models. The following are the test results:
 
-| Provider | Model | Thinking Chain | Simple Task | Tool Calling | MCP Calling | Complex Task | Multimodal | Token Count |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 【Google】 | Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRoter】 | Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRoter】 | Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRoter】 | Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Volcengine】 | Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Bailian】 | Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| 【Volcengine】 | DeepSeek-R1-250528 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Siliconflow】 | DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Volcengine】 | Doubao-1.5-Pro-256K | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Volcengine】 | DeepSeek-V3-0324 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Bailian】 | Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】 | Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】 | DeepSeek-R1-Distill-Qwen-32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Ollama】 | Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| Model | Thinking Chain | Simple Task | Tool Calling | MCP Calling | Complex Task | Multimodal | Token Count |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 【Google】Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Volcengine】Doubao-1.5-Pro | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Volcengine】DeepSeek-V3 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Bailian】Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【vLLM】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【vLLM】DeepSeek-R1-32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Ollama】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 
 ## Quickstart
 

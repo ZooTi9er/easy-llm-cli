@@ -23,22 +23,22 @@
 
 本方案已经对多种不同提供商、模型以及本地部署的模型进行了多个维度的测试，以下是测试结果：
 
-| 提供商 | 模型 | 思考过程 | 基础对话 | 工具调用 | MCP 调用 | 复杂任务 | 多模态 | Token 统计 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 【Google】 | Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRoter】 | Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRoter】 | Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRoter】 | Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Volcengine】 | Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Bailian】 | Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| 【Volcengine】 | DeepSeek-R1-250528 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Siliconflow】 | DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Volcengine】 | Doubao-1.5-Pro-256K | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Volcengine】 | DeepSeek-V3-0324 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Bailian】 | Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】 | Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】 | DeepSeek-R1-Distill-Qwen-32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Ollama】 | Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+|  模型 | 思考过程 | 基础对话 | 工具调用 | MCP 调用 | 复杂任务 | 多模态 | Token 统计 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 【Google】Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Volcengine】Doubao-1.5-Pro | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Volcengine】DeepSeek-V3 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Bailian】Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【vLLM】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【vLLM】DeepSeek-R1--32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Ollama】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 
 ## 快速开始
 
