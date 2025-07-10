@@ -64,6 +64,30 @@ export function extractJsonFromLLMOutput(output: string): any {
 }
 
 /**
+ * Convert type values to lowercase
+ */
+function convertTypeValuesToLowerCase(obj: any): any {
+  if (Array.isArray(obj)) {
+    return obj.map((item) => convertTypeValuesToLowerCase(item));
+  }
+  if (obj !== null && typeof obj === 'object') {
+    const newObj: any = {};
+    for (const [key, value] of Object.entries(obj)) {
+      if (key === 'minLength' || key === 'minItems') {
+        continue;
+      }
+      if (key === 'type' && typeof value === 'string') {
+        newObj[key] = value.toLowerCase();
+      } else {
+        newObj[key] = convertTypeValuesToLowerCase(value);
+      }
+    }
+    return newObj;
+  }
+  return obj;
+}
+
+/**
  * Converts Gemini tool function declarations to OpenAI-compatible tool array format
  * @param requestConfig Gemini generate content config (containing tool declarations)
  * @returns OpenAI tool call format array, undefined if no tools
@@ -81,7 +105,11 @@ export function extractToolFunctions(
           function: {
             name: func.name || '',
             description: func.description || '',
-            parameters: (func.parameters as Record<string, unknown>) || {},
+            parameters:
+              (convertTypeValuesToLowerCase(func.parameters) as Record<
+                string,
+                unknown
+              >) || {},
           },
         });
       }

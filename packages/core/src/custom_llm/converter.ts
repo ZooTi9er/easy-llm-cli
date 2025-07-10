@@ -85,17 +85,15 @@ export class ModelConverter {
   ): void {
     const frParts = parts.filter(isValidFunctionResponse);
     if (frParts.length > 0) {
-      messages.push({
-        tool_call_id: frParts[0].functionResponse.id,
-        role: 'tool',
-        content: frParts
-          .map((part) =>
-            part.functionResponse.response.error
-              ? `Error: ${part.functionResponse.response.error}`
-              : part.functionResponse.response.output,
-          )
-          .join('\n'),
-      });
+      for (const part of frParts) {
+        messages.push({
+          tool_call_id: part.functionResponse.id,
+          role: 'tool',
+          content: part.functionResponse.response.error
+            ? `Error: ${part.functionResponse.response.error}`
+            : part.functionResponse.response.output || '',
+        });
+      }
       this.processImageParts(parts, messages);
     }
   }
@@ -143,8 +141,8 @@ export class ModelConverter {
       messages.push({
         role: 'assistant',
         content: null,
-        tool_calls: fcParts.map((part) => ({
-          id: `call_${Math.random().toString(36).slice(2)}`,
+        tool_calls: fcParts.map((part: any) => ({
+          id: part.functionCall.id,
           type: 'function',
           function: {
             name: part.functionCall.name,
@@ -232,6 +230,7 @@ export class ModelConverter {
           parts: Array.from(toolCallMap.entries()).map(
             ([_index, toolCall]) => ({
               functionCall: {
+                id: `call_${Math.random().toString(36).slice(2)}`,
                 name: toolCall.name,
                 args: toolCall.arguments ? JSON.parse(toolCall.arguments) : {},
               },

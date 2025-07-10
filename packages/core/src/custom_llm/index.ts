@@ -55,7 +55,7 @@ export class CustomLLMContentGenerator implements ContentGenerator {
     request: GenerateContentParameters,
   ): Promise<AsyncGenerator<GenerateContentResponse>> {
     const messages = ModelConverter.toOpenAIMessages(request);
-    const tools = extractToolFunctions(request.config);
+    const tools = extractToolFunctions(request.config) || [];
     const stream = await this.model.chat.completions.create({
       messages,
       stream: true,
