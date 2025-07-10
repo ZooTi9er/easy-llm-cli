@@ -319,7 +319,7 @@ export class ModelConverter {
     chunk: OpenAI.Chat.Completions.ChatCompletionChunk,
     toolCallMap: ToolCallMap,
   ): { response: GenerateContentResponse | null; shouldReturn: boolean } {
-    if (!chunk.choices.length && chunk.usage) {
+    if (chunk.usage && chunk.usage.total_tokens) {
       return {
         response: this.toGeminiStreamUsageResponse(chunk.usage),
         shouldReturn: true,
