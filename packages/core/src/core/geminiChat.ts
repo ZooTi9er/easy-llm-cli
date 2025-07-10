@@ -462,6 +462,7 @@ export class GeminiChat {
   ) {
     const outputContent: Content[] = [];
     const chunks: GenerateContentResponse[] = [];
+    const tokenChunks: GenerateContentResponse[] = [];
     let errorOccurred = false;
 
     try {
@@ -477,6 +478,7 @@ export class GeminiChat {
             outputContent.push(content);
           }
         }
+        tokenChunks.push(chunk);
         yield chunk;
       }
     } catch (error) {
@@ -497,7 +499,7 @@ export class GeminiChat {
       const fullText = getStructuredResponseFromParts(allParts);
       await this._logApiResponse(
         durationMs,
-        this.getFinalUsageMetadata(chunks),
+        this.getFinalUsageMetadata(tokenChunks),
         fullText,
       );
     }

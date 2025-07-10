@@ -47,7 +47,7 @@ export class CustomLLMContentGenerator implements ContentGenerator {
    * It supports tool calls and uses a ToolCallMap to track tool invocation states.
    * @param request - Parameters for generating content, including prompts and configuration.
    * @returns An asynchronous generator that yields GenerateContentResponse objects
-   *          until the stream ends or termination conditions are met.
+   *          until the stream ends or ter mination conditions are met.
    * @remarks This method is ideal for scenarios requiring real-time interaction, such as chat interfaces
    * or interactive applications. Stream responses are processed incrementally via ModelConverter.
    */
@@ -60,20 +60,15 @@ export class CustomLLMContentGenerator implements ContentGenerator {
       messages,
       stream: true,
       tools,
+      stream_options: { include_usage: true },
       ...this.config,
     });
     const map: ToolCallMap = new Map();
     return (async function* (): AsyncGenerator<GenerateContentResponse> {
       for await (const chunk of stream) {
-        const { response, shouldReturn } = ModelConverter.processStreamChunk(
-          chunk,
-          map,
-        );
+        const { response } = ModelConverter.processStreamChunk(chunk, map);
         if (response) {
           yield response;
-        }
-        if (shouldReturn) {
-          return;
         }
       }
     })();

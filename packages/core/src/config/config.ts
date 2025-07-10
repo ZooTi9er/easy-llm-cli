@@ -278,6 +278,9 @@ export class Config {
   }
 
   getModel(): string {
+    if (process.env.USE_CUSTOM_LLM) {
+      return process.env.CUSTOM_LLM_MODEL_NAME || '';
+    }
     return this.contentGeneratorConfig?.model || this.model;
   }
 

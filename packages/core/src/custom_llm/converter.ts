@@ -265,6 +265,31 @@ export class ModelConverter {
   }
 
   /**
+   * Create final response for stream completion
+   */
+  static toGeminiStreamUsageResponse(
+    usage: OpenAI.Completions.CompletionUsage,
+  ): GenerateContentResponse {
+    const res = new GenerateContentResponse();
+    res.candidates = [
+      {
+        content: {
+          parts: [],
+          role: 'model',
+        },
+        index: 0,
+        safetyRatings: [],
+      },
+    ];
+    res.usageMetadata = {
+      promptTokenCount: usage.prompt_tokens || 0,
+      candidatesTokenCount: usage.completion_tokens || 0,
+      totalTokenCount: usage.total_tokens || 0,
+    };
+    return res;
+  }
+
+  /**
    * Update tool call map with streaming deltas
    */
   static updateToolCallMap(
@@ -295,6 +320,13 @@ export class ModelConverter {
     chunk: OpenAI.Chat.Completions.ChatCompletionChunk,
     toolCallMap: ToolCallMap,
   ): { response: GenerateContentResponse | null; shouldReturn: boolean } {
+    if (!chunk.choices.length && chunk.usage) {
+      return {
+        response: this.toGeminiStreamUsageResponse(chunk.usage),
+        shouldReturn: true,
+      };
+    }
+
     const choice = chunk.choices[0];
 
     if (choice?.delta?.content) {
