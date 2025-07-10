@@ -21,7 +21,7 @@ With the Easy LLM CLI you can:
 - Configure and use your preferred LLM provider through simple environment variables.
 - Seamlessly switch between different LLM providers without changing your workflow.
 
-## Test Results
+<hr />
 
 This tool has conducted multi-dimensional tests on various models from different providers as well as locally deployed models. The following are the test results:
 
@@ -32,9 +32,9 @@ This tool has conducted multi-dimensional tests on various models from different
 | 【OpenRouter】Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | 【Volcengine】Doubao-1.5-Pro | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 | 【Volcengine】DeepSeek-V3 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 | 【Bailian】Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |

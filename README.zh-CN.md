@@ -21,6 +21,8 @@
 - 通过简单的环境变量配置和使用您首选的 LLM 提供商
 - 在不改变工作流程的情况下无缝切换不同的 LLM 提供商
 
+<hr />
+
 本方案已经对多种不同提供商、模型以及本地部署的模型进行了多个维度的测试，以下是测试结果：
 
 |  模型 | 思考过程 | 基础对话 | 工具调用 | MCP 调用 | 复杂任务 | 多模态 | Token 统计 |
@@ -30,9 +32,9 @@
 | 【OpenRouter】Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | 【Volcengine】Doubao-1.5-Pro | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 | 【Volcengine】DeepSeek-V3 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 | 【Bailian】Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
