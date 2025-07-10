@@ -1,10 +1,16 @@
-# Easy LLM CLI
-
-
 ![Easy LLM CLI Screenshot](./docs/assets/openrouter.png)
+
+<div align="center">
+
+<h4>  An open-source AI agent that is compatible with multiple LLM models.  </h4>
+
+[English](./README.md) | [简体中文](./README.zh-CN.md)
+
+</div>
 
 This repository contains the Easy LLM CLI（[Gemini Cli](https://github.com/google-gemini/gemini-cli) version of the Fork）, a command-line AI workflow tool that connects to your
 tools, understands your code and accelerates your workflows. It supports multiple LLM providers including Gemini, OpenAI, and any custom LLM API that follows OpenAI's API format.
+
 
 With the Easy LLM CLI you can:
 
@@ -15,13 +21,34 @@ With the Easy LLM CLI you can:
 - Configure and use your preferred LLM provider through simple environment variables.
 - Seamlessly switch between different LLM providers without changing your workflow.
 
+## Test Results
+
+This tool has conducted multi-dimensional tests on various models from different providers as well as locally deployed models. The following are the test results:
+
+| Provider | Model | Thinking Chain | Simple Task | Tool Calling | MCP Calling | Complex Task | Multimodal | Token Count |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 【Google】 | Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRoter】 | Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRoter】 | Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRoter】 | Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Volcengine】 | Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Bailian】 | Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| 【Volcengine】 | DeepSeek-R1-250528 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Siliconflow】 | DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Volcengine】 | Doubao-1.5-Pro-256K | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Volcengine】 | DeepSeek-V3-0324 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Bailian】 | Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【vLLM】 | Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【vLLM】 | DeepSeek-R1-Distill-Qwen-32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【Ollama】 | Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+
 ## Quickstart
 
 1. **Prerequisites:** Ensure you have [Node.js version 20](https://nodejs.org/en/download) or higher installed.
 2. **Run the CLI:** Execute the following command in your terminal:
 
    ```bash
-   npx https://github.com/ConardLi/easy-llm-cli
+   npx easy-llm-cli
    ```
 
    Or install it with:
@@ -39,6 +66,9 @@ Easy LLM CLI supports connecting to any OpenAI-compatible LLM API. You can confi
 
 ```bash
 # Enable custom LLM support
+export USE_CUSTOM_LLM=true 
+
+export CUSTOM_LLM_PROVIDER="openai"  # LLM provider
 export CUSTOM_LLM_API_KEY="your-api-key"     # Your LLM provider API key
 export CUSTOM_LLM_ENDPOINT="https://api.your-llm-provider.com/v1"  # API endpoint
 export CUSTOM_LLM_MODEL_NAME="your-model-name"  # Model name

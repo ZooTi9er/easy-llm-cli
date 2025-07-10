@@ -16,6 +16,7 @@
     "test:ci": "vitest run --coverage",
     "typecheck": "tsc --noEmit"
   },
+  "license": "Apache-2.0",
   "files": [
     "dist"
   ],
