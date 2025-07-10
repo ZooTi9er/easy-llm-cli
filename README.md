@@ -23,7 +23,7 @@ With the Easy LLM CLI you can:
 
 <hr />
 
-This tool has conducted multi-dimensional tests on various models from different providers as well as locally deployed models. The following are the test results:
+This plan has conducted tests on various models from different providers as well as locally deployed models across multiple dimensions, including whether they have thinking chain, whether they can complete simple tasks, whether they have tool - calling capabilities, whether they have multimodal capabilities, whether they have complex task capabilities, and whether they can count tokens. The following are the test results:
 
 | Model | COT | Simple | Tool | MCP | Complex | Multimodal | Token |
 | --- | --- | --- | --- | --- | --- | --- | --- |
