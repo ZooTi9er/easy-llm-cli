@@ -25,7 +25,7 @@ With the Easy LLM CLI you can:
 
 This tool has conducted multi-dimensional tests on various models from different providers as well as locally deployed models. The following are the test results:
 
-| Model | COT | Simple Task | Tool | MCP | Complex Task | Multimodal | Token Count |
+| Model | COT | Simple | Tool | MCP | Complex | Multimodal | Token |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 【Google】Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【OpenRouter】Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
