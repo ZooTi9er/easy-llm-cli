@@ -1,10 +1,10 @@
 {
-  "name": "@google/gemini-cli",
-  "version": "0.1.9",
+  "name": "easy-llm-cli",
+  "version": "0.1.0",
   "description": "Gemini CLI",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/google-gemini/gemini-cli.git"
+    "url": "git+https://github.com/ConardLi/easy-llm-cli.git"
   },
   "type": "module",
   "main": "dist/index.js",

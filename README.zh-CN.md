@@ -2,7 +2,7 @@
 
 # Easy LLM CLI
 
-![Easy LLM CLI 截图](./docs/assets/gemini-screenshot.png)
+![Easy LLM CLI 截图](./docs/assets/openrouter.png)
 
 这个仓库包含了 Easy LLM CLI（[Gemini Cli](https://github.com/google-gemini/gemini-cli)  的 Fork 版本），一个连接到您的工具、理解您的代码并加速您工作流程的命令行 AI 工具。它支持多种 LLM 提供商，包括 Gemini、OpenAI 以及任何遵循 OpenAI API 格式的自定义 LLM API。
 

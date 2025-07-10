@@ -1,7 +1,7 @@
 # Easy LLM CLI
 
 
-![Easy LLM CLI Screenshot](./docs/assets/gemini-screenshot.png)
+![Easy LLM CLI Screenshot](./docs/assets/openrouter.png)
 
 This repository contains the Easy LLM CLI（[Gemini Cli](https://github.com/google-gemini/gemini-cli) version of the Fork）, a command-line AI workflow tool that connects to your
 tools, understands your code and accelerates your workflows. It supports multiple LLM providers including Gemini, OpenAI, and any custom LLM API that follows OpenAI's API format.
