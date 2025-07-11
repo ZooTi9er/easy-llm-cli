@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<h4>  An open-source AI agent that is compatible with multiple LLM models.  </h4>
+<h4>  An open-source AI agent that is compatible with multiple LLM models（a forked version of Gemini CLI）.  </h4>
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
