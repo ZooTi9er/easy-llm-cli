@@ -4,13 +4,13 @@
 
 <div align="center">
 
-<h4> 一个与多种大语言模型（LLM）兼容的开源 AI Agent CLI。  </h4>
+<h4> 一个与多种大语言模型（LLM）兼容的开源 AI Agent CLI（Gemini ClI 的 Fork 版本）。  </h4>
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
 </div>
 
-这个仓库包含了 Easy LLM CLI（[Gemini Cli](https://github.com/google-gemini/gemini-cli)  的 Fork 版本），一个连接到您的工具、理解您的代码并加速您工作流程的命令行 AI 工具。它支持多种 LLM 提供商，包括 Gemini、OpenAI 以及任何遵循 OpenAI API 格式的自定义 LLM API。
+这个仓库包含了 Easy LLM CLI（[Gemini ClI](https://github.com/google-gemini/gemini-cli)  的 Fork 版本），一个连接到您的工具、理解您的代码并加速您工作流程的命令行 AI 工具。它支持多种 LLM 提供商，包括 Gemini、OpenAI 以及任何遵循 OpenAI API 格式的自定义 LLM API。
 
 使用 Easy LLM CLI，您可以：
 
@@ -33,6 +33,7 @@
 | 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Moonshot】kimi-k2 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | 【Volcengine】Doubao-1.5-Pro | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
