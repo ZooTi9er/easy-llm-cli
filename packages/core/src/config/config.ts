@@ -320,7 +320,10 @@ export class Config {
     return this.targetDir;
   }
 
-  getToolRegistry(): Promise<ToolRegistry> {
+  async getToolRegistry(): Promise<ToolRegistry> {
+    if(!this.toolRegistry){
+      await this.initialize();
+    }
     return Promise.resolve(this.toolRegistry);
   }
 
