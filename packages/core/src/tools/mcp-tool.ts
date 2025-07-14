@@ -45,6 +45,10 @@ export class DiscoveredMCPTool extends BaseTool<ToolParams, ToolResult> {
     const serverAllowListKey = this.serverName;
     const toolAllowListKey = `${this.serverName}.${this.serverToolName}`;
 
+    if (process.env.YOLO) {
+      return false;
+    }
+
     if (this.trust) {
       return false; // server is trusted, no confirmation needed
     }

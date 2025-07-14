@@ -7,7 +7,8 @@
 import { Schema } from '@google/genai';
 import * as ajv from 'ajv';
 
-const ajValidator = new ajv.default();
+// 创建 Ajv 实例进行 JSON Schema 验证
+const ajValidator = new (ajv as any).default();
 
 /**
  * Simple utility to validate objects against JSON Schemas
