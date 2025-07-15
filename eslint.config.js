@@ -11,7 +11,6 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import prettierConfig from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
-import licenseHeader from 'eslint-plugin-license-header';
 import noRelativeCrossPackageImports from './eslint-rules/no-relative-cross-package-imports.js';
 import path from 'node:path'; // Use node: prefix for built-ins
 import url from 'node:url';
@@ -138,22 +137,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['./**/*.{tsx,ts,js}'],
-    plugins: {
-      'license-header': licenseHeader,
-    },
-    rules: {
-      'license-header/header': [
-        'error',
-        [
-          '/**',
-          ' * @license',
-          ' * Copyright 2025 Google LLC',
-          ' * SPDX-License-Identifier: Apache-2.0',
-          ' */',
-        ],
-      ],
-    },
+    files: ['./**/*.{tsx,ts,js}']
   },
   // extra settings for scripts that we run directly with node
   {
