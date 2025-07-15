@@ -7,10 +7,16 @@ This document introduces how to directly invoke the Agent functionality of Easy 
 Easy LLM CLI provides the `ElcAgent` class, allowing developers to integrate AI Agent capabilities into their own Node.js applications. This API supports multiple LLM providers, including custom endpoints, tool invocation, and system extensions.
 
 ## Installation
+
+```js
 npm install easy-llm-cli
+```
+
 ## Basic Usage
 
 ### Import and Initialization
+
+```js
 import { ElcAgent, AuthType } from 'easy-llm-cli';
 
 // Create an Agent instance
@@ -25,6 +31,9 @@ const agent = new ElcAgent({
 // Run a conversation
 const response = await agent.run('Hello, please help me analyze the structure of this project');
 console.log(response);
+```
+
+
 ## AgentConfig Configuration Options
 
 The `ElcAgent` constructor accepts an `AgentConfig` object with the following configuration options:
@@ -55,6 +64,8 @@ The `ElcAgent` constructor accepts an `AgentConfig` object with the following co
 ## Usage Examples
 
 ### Example 1: Basic Conversation
+
+```js
 import { ElcAgent } from 'easy-llm-cli';
 
 async function basicChat() {
@@ -68,7 +79,11 @@ async function basicChat() {
   const response = await agent.run('Explain what recursion is');
   console.log('AI Response:', response);
 }
+```
+
 ### Example 2: File Operations (Non-readonly Mode)
+
+```js
 async function fileOperations() {
   const agent = new ElcAgent({
     model: 'claude-3-sonnet',
@@ -83,7 +98,11 @@ async function fileOperations() {
   );
   console.log(response);
 }
+```
+
 ### Example 3: Using Extensions and MCP Servers
+
+```js
 async function withExtensions() {
   const agent = new ElcAgent({
     model: 'claude-3-sonnet',
@@ -107,7 +126,11 @@ async function withExtensions() {
   );
   console.log(response);
 }
+```
+
 ### Example 4: Custom System Prompt
+
+```js
 async function customSystemPrompt() {
   const agent = new ElcAgent({
     model: 'your-model',
@@ -126,9 +149,10 @@ async function customSystemPrompt() {
   );
   console.log(response);
 }
+```
+
 ## Method Descriptions
 
-### `run(userInput: string): Promise
 ### `run(userInput: string): Promise<string>`
 
 Executes a complete task, including user input processing, tool invocation, and AI response generation.
