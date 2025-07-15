@@ -59,7 +59,6 @@
    elc
 ```
 
-3. **选择一个颜色主题**
 ## 自定义 LLM 配置
 
 Easy LLM 命令行工具支持连接到任何兼容 OpenAI 的 LLM API。你可以使用以下环境变量配置首选的 LLM：
@@ -100,6 +99,33 @@ cd easy-llm-cli
 elc
 > 给我总结一下昨天所有的变更内容
 ```
+
+## 在代码中运行
+
+Easy LLM 支持直接在代码中通过 NPM 引入并使用：
+
+```js
+  import { ElcAgent } from 'easy-llm-cli';
+  const agent = new ElcAgent({
+    model: 'custom-llm-model-name',
+    apiKey: 'custom-llm-api-key',
+    endpoint: 'custom-llm-endpoint',
+    extension: {
+      mcpServers: {
+        chart: {
+          command: 'npx',
+          args: ['-y', '@antv/mcp-server-chart'],
+          trust: false
+        }
+      },
+      excludeTools: ['run_shell_command']
+    }
+  });
+  const result = await agent.run('请帮我生成一个销售数据的柱状图');
+  console.log(result);
+```
+
+- 查看 API 调用详细文档：[Programmatic API](./docs/programmatic-api.zh-CN.md)
 
 ### 后续步骤
 

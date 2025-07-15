@@ -59,7 +59,6 @@ This plan has conducted tests on various models from different providers as well
    elc
    ```
 
-3. **Pick a color theme**
 
 ## Custom LLM Configuration
 
@@ -103,6 +102,36 @@ cd easy-llm-cli
 elc
 > Give me a summary of all of the changes that went in yesterday
 ```
+
+## Running in Code
+
+Easy LLM supports direct integration into your code via NPM:
+
+```javascript
+import { ElcAgent } from 'easy-llm-cli';
+
+const agent = new ElcAgent({
+  model: 'custom-llm-model-name',
+  apiKey: 'custom-llm-api-key',
+  endpoint: 'custom-llm-endpoint',
+  extension: {
+    mcpServers: {
+      chart: {
+        command: 'npx',
+        args: ['-y', '@antv/mcp-server-chart'],
+        trust: false
+      }
+    },
+    excludeTools: ['run_shell_command']
+  }
+});
+
+const result = await agent.run('Please generate a bar chart for sales data');
+console.log(result);
+```
+
+- View detailed API documentation: [Programmatic API](./docs/programmatic-api.en-US.md)
+
 
 ### Next steps
 
