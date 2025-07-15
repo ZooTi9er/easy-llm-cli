@@ -1,6 +1,6 @@
 {
   "name": "easy-llm-cli",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -52,6 +52,15 @@
     "README.md",
     "LICENSE"
   ],
+  "main": "bundle/api.js",
+  "types": "index.ts",
+  "exports": {
+    ".": {
+      "import": "./bundle/api.js",
+      "types": "./index.ts"
+    },
+    "./package.json": "./package.json"
+  },
   "devDependencies": {
     "@types/micromatch": "^4.0.9",
     "@types/mime-types": "^2.1.4",
@@ -77,5 +86,8 @@
     "typescript-eslint": "^8.30.1",
     "vitest": "^3.2.4",
     "yargs": "^17.7.2"
+  },
+  "dependencies": {
+    "@google/genai": "^1.9.0"
   }
 }

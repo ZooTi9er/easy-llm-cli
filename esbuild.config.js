@@ -29,3 +29,39 @@ esbuild
     },
   })
   .catch(() => process.exit(1));
+
+// Build API bundle
+esbuild
+  .build({
+    entryPoints: ['index.ts'],
+    bundle: true,
+    outfile: 'bundle/api.js',
+    platform: 'node',
+    format: 'esm',
+    define: {
+      'process.env.CLI_VERSION': JSON.stringify(pkg.version),
+    },
+    external: [
+      '@google/genai',
+      'assert',
+      'buffer',
+      'child_process',
+      'crypto',
+      'events',
+      'fs',
+      'http',
+      'https',
+      'net',
+      'os',
+      'path',
+      'stream',
+      'tty',
+      'url',
+      'util',
+      'zlib'
+    ],
+    banner: {
+      js: `import { createRequire } from 'module'; const require = createRequire(import.meta.url); globalThis.__filename = require('url').fileURLToPath(import.meta.url); globalThis.__dirname = require('path').dirname(globalThis.__filename);`,
+    },
+  })
+  .catch(() => process.exit(1));

@@ -1,6 +1,6 @@
 {
   "name": "easy-llm-cli-core",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "Gemini CLI Core",
   "repository": {
     "type": "git",
