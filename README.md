@@ -130,7 +130,7 @@ const result = await agent.run('Please generate a bar chart for sales data');
 console.log(result);
 ```
 
-- View detailed API documentation: [Programmatic API](./docs/programmatic-api.en-US.md)
+- View detailed API documentation: [Programmatic API](./docs/programmatic-api.md)
 
 
 ### Next steps
