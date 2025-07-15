@@ -26,4 +26,8 @@ export interface AgentConfig {
   topP?: number;
   maxTokens?: number;
   log?: boolean;
+  readonly?: boolean;
+  systemPrompt?: string;
+  rootPath?: string;
+  extension?: any;
 }

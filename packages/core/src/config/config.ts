@@ -20,6 +20,8 @@ import { EditTool } from '../tools/edit.js';
 import { ShellTool } from '../tools/shell.js';
 import { WriteFileTool } from '../tools/write-file.js';
 import { ReadManyFilesTool } from '../tools/read-many-files.js';
+import { WebFetchTool } from '../tools/web-fetch.js';
+import { WebSearchTool } from '../tools/web-search.js';
 import {
   MemoryTool,
   setGeminiMdFilename,
@@ -321,7 +323,7 @@ export class Config {
   }
 
   async getToolRegistry(): Promise<ToolRegistry> {
-    if(!this.toolRegistry){
+    if (!this.toolRegistry) {
       await this.initialize();
     }
     return Promise.resolve(this.toolRegistry);
@@ -532,13 +534,17 @@ export class Config {
     registerCoreTool(ReadFileTool, targetDir, this);
     registerCoreTool(GrepTool, targetDir);
     registerCoreTool(GlobTool, targetDir, this);
-    registerCoreTool(EditTool, this);
-    registerCoreTool(WriteFileTool, this);
-    // registerCoreTool(WebFetchTool, this);
     registerCoreTool(ReadManyFilesTool, targetDir, this);
     registerCoreTool(ShellTool, this);
     registerCoreTool(MemoryTool);
-    // registerCoreTool(WebSearchTool, this);
+    if (!process.env.READ_ONLY) {
+      registerCoreTool(EditTool, this);
+      registerCoreTool(WriteFileTool, this);
+    }
+    if (process.env.USE_GEMINI_TOOL) {
+      registerCoreTool(WebFetchTool, this);
+      registerCoreTool(WebSearchTool, this);
+    }
 
     await registry.discoverTools();
     return registry;

@@ -223,6 +223,9 @@ async function readGeminiMdFiles(
   const results: GeminiFileContent[] = [];
   for (const filePath of filePaths) {
     try {
+      if (!filePath) {
+        continue;
+      }
       const content = await fs.readFile(filePath, 'utf-8');
 
       // Process imports in the content

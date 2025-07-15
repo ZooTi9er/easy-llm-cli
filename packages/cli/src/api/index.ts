@@ -20,6 +20,8 @@ export class ElcAgent {
   results: AgentResult[] = [];
   abortController = new AbortController();
   showLog: boolean = false;
+  rootPath?: string;
+  extension?: any;
 
   constructor(agentConfig: AgentConfig) {
     const {
@@ -31,9 +33,14 @@ export class ElcAgent {
       temperature,
       topP,
       maxTokens,
+      readonly,
       log,
+      rootPath,
+      extension,
+      systemPrompt,
     } = agentConfig;
     this.showLog = log || false;
+    this.extension = extension;
     if (!authType || authType === AuthType.CUSTOM_LLM_API) {
       process.env.USE_CUSTOM_LLM = 'true';
       if (!model || !apiKey || !endpoint) {
@@ -49,13 +56,25 @@ export class ElcAgent {
       process.env.CUSTOM_LLM_TOP_P = String(topP || 1);
       process.env.CUSTOM_LLM_MAX_TOKENS = String(maxTokens || 8096);
     }
+    if (readonly) {
+      process.env.READ_ONLY = 'true';
+    }
+    if (rootPath) {
+      this.rootPath = rootPath;
+      process.chdir(rootPath);
+    }
+    if (systemPrompt) {
+      process.env.SYSTEM_PROMPT = systemPrompt;
+    }
   }
 
   async run(userInput: string): Promise<string> {
     const workspaceRoot = process.cwd();
-    const settings = loadSettings(workspaceRoot);
+    const settings = loadSettings(process.cwd());
     await cleanupCheckpoints();
-    const extensions = loadExtensions(workspaceRoot);
+    const extensions: any = this.extension
+      ? [{ config: this.extension }]
+      : loadExtensions(workspaceRoot);
     const config = await loadCliConfig(settings.merged, extensions, sessionId);
 
     settings.setValue(
