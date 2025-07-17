@@ -1,6 +1,6 @@
 {
   "name": "easy-llm-cli",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -57,6 +57,7 @@
   "exports": {
     ".": {
       "import": "./bundle/api.js",
+      "require": "./bundle/api.js",
       "types": "./index.ts"
     },
     "./package.json": "./package.json"
