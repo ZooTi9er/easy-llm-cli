@@ -61,7 +61,11 @@ export class ElcAgent {
     }
     if (rootPath) {
       this.rootPath = rootPath;
-      process.chdir(rootPath);
+      try {
+        process.chdir(rootPath);
+      } catch {
+        // ignore chdir error in worker
+      }
     }
     if (systemPrompt) {
       process.env.SYSTEM_PROMPT = systemPrompt;
