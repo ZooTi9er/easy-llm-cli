@@ -22,6 +22,7 @@ export class ElcAgent {
   showLog: boolean = false;
   rootPath?: string;
   extension?: any;
+  disableReadArgs: boolean = false;
 
   constructor(agentConfig: AgentConfig) {
     const {
@@ -38,9 +39,11 @@ export class ElcAgent {
       rootPath,
       extension,
       systemPrompt,
+      disableReadArgs
     } = agentConfig;
     this.showLog = log || false;
     this.extension = extension;
+    this.disableReadArgs = disableReadArgs || false;
     if (!authType || authType === AuthType.CUSTOM_LLM_API) {
       process.env.USE_CUSTOM_LLM = 'true';
       if (!model || !apiKey || !endpoint) {
@@ -79,7 +82,7 @@ export class ElcAgent {
     const extensions: any = this.extension
       ? [{ config: this.extension }]
       : loadExtensions(workspaceRoot);
-    const config = await loadCliConfig(settings.merged, extensions, sessionId);
+    const config = await loadCliConfig(settings.merged, extensions, sessionId,this.disableReadArgs);
 
     settings.setValue(
       SettingScope.User,

@@ -204,8 +204,12 @@ export async function loadCliConfig(
   settings: Settings,
   extensions: Extension[],
   sessionId: string,
+  disableReadArgs: boolean,
 ): Promise<Config> {
-  const argv = await parseArguments();
+  let argv = {} as CliArgs;
+  if (!disableReadArgs) {
+    argv = await parseArguments();
+  } 
   const debugMode =
     argv.debug ||
     [process.env.DEBUG, process.env.DEBUG_MODE].some(

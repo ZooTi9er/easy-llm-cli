@@ -30,4 +30,5 @@ export interface AgentConfig {
   systemPrompt?: string;
   rootPath?: string;
   extension?: any;
+  disableReadArgs?: boolean;
 }
