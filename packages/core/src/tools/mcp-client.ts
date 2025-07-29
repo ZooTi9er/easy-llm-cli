@@ -53,6 +53,8 @@ const mcpServerStatusesInternal: Map<string, MCPServerStatus> = new Map();
  */
 let mcpDiscoveryState: MCPDiscoveryState = MCPDiscoveryState.NOT_STARTED;
 
+let mcpClient: Client | null = null;
+
 /**
  * Event listeners for MCP server status changes
  */
@@ -211,7 +213,7 @@ async function connectAndDiscover(
     return;
   }
 
-  const mcpClient = new Client({
+  mcpClient = new Client({
     name: 'gemini-cli-mcp-client',
     version: '0.0.1',
   });
@@ -388,5 +390,14 @@ async function connectAndDiscover(
       // Update status to disconnected
       updateMCPServerStatus(mcpServerName, MCPServerStatus.DISCONNECTED);
     }
+  }
+}
+
+/**
+ * Close all MCP connections.
+ */
+export async function closeAllMCPConnections() {
+  if (mcpClient) {
+    await mcpClient.close();
   }
 }

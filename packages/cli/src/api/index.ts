@@ -11,6 +11,7 @@ import {
   ToolCallRequestInfo,
   CoreToolScheduler,
   ApprovalMode,
+  closeAllMCPConnections
 } from '@google/gemini-cli-core';
 import { type Part } from '@google/genai';
 import { AgentConfig, AgentResult } from './types.js';
@@ -101,6 +102,8 @@ export class ElcAgent {
     await this.processConversationRound(config, geminiClient, [
       { text: userInput },
     ]);
+    //close mcp connection
+    await closeAllMCPConnections();
     return this.getLastResult();
   }
 
