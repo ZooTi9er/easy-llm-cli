@@ -20,21 +20,52 @@ import { ModelConverter } from './converter.js';
 
 export class CustomLLMContentGenerator implements ContentGenerator {
   private model: OpenAI;
-  private apiKey: string = process.env.CUSTOM_LLM_API_KEY || '';
-  private baseURL: string = process.env.CUSTOM_LLM_ENDPOINT || '';
-  private modelName: string = process.env.CUSTOM_LLM_MODEL_NAME || '';
-  private temperature: number = Number(process.env.CUSTOM_LLM_TEMPERATURE || 0);
-  private maxTokens: number = Number(process.env.CUSTOM_LLM_MAX_TOKENS || 8192);
-  private topP: number = Number(process.env.CUSTOM_LLM_TOP_P || 1);
-  private timeout: number = Number(process.env.CUSTOM_LLM_TIMEOUT || 30000); // 30 seconds default
-  private config: CustomLLMContentGeneratorConfig = {
-    model: this.modelName,
-    temperature: this.temperature,
-    max_tokens: this.maxTokens,
-    top_p: this.topP,
-  };
+  private apiKey: string;
+  private baseURL: string;
+  private modelName: string;
+  private temperature: number;
+  private maxTokens: number;
+  private topP: number;
+  private timeout: number;
+  private config: CustomLLMContentGeneratorConfig;
 
   constructor() {
+    // 尝试从配置验证模块读取配置
+    let config = null;
+    try {
+      const configModule = require('../config/index.js');
+      config = configModule.default;
+    } catch (error) {
+      // 如果配置模块加载失败，使用环境变量
+      console.log('[CustomLLM] Config module not found, falling back to environment variables');
+    }
+
+    // 从配置模块或环境变量读取配置
+    this.apiKey = config?.CUSTOM_LLM_API_KEY || process.env.CUSTOM_LLM_API_KEY || '';
+    this.baseURL = config?.CUSTOM_LLM_ENDPOINT || process.env.CUSTOM_LLM_ENDPOINT || '';
+    this.modelName = config?.CUSTOM_LLM_MODEL_NAME || process.env.CUSTOM_LLM_MODEL_NAME || '';
+    this.temperature = Number(config?.CUSTOM_LLM_TEMPERATURE || process.env.CUSTOM_LLM_TEMPERATURE || 0.1);
+    this.maxTokens = Number(config?.CUSTOM_LLM_MAX_TOKENS || process.env.CUSTOM_LLM_MAX_TOKENS || 8192);
+    this.topP = Number(config?.CUSTOM_LLM_TOP_P || process.env.CUSTOM_LLM_TOP_P || 1);
+    this.timeout = Number(config?.CUSTOM_LLM_TIMEOUT || process.env.CUSTOM_LLM_TIMEOUT || 30000);
+    
+    this.config = {
+      model: this.modelName,
+      temperature: this.temperature,
+      max_tokens: this.maxTokens,
+      top_p: this.topP,
+    };
+
+    // 调试信息
+    console.log('[CustomLLM] Configuration:', {
+      baseURL: this.baseURL ? '[REDACTED]' : undefined,
+      modelName: this.modelName,
+      temperature: this.temperature,
+      maxTokens: this.maxTokens,
+      topP: this.topP,
+      timeout: this.timeout,
+    });
+
     this.model = new OpenAI({
       apiKey: this.apiKey,
       baseURL: this.baseURL,

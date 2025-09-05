@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Overview
+
+Easy LLM CLI is an open-source AI agent compatible with multiple LLM providers (a forked version of Gemini CLI). It supports Gemini, OpenAI, and any custom LLM API that follows OpenAI's format. The project enables querying/editing codebases, generating apps from PDFs/sketches, automating operational tasks, and integrating with tools via MCP servers.
+
 ## Development Commands
 
 ### Building and Testing
@@ -22,6 +26,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run start` - Start the CLI in development mode
 - `npm run debug` - Start CLI with Node.js debugger attached
 - `npm run bundle` - Create distribution bundles for npm publishing
+
+### Quick Start
+
+- `npx easy-llm-cli` - Run the CLI directly
+- `npm install -g easy-llm-cli` - Install globally, then use `elc` command
 
 ### Testing Individual Components
 
@@ -150,3 +159,29 @@ This is a monorepo with two main packages:
 2. Use `npm run bundle` to create distribution bundles
 3. Test with `npm run test:e2e` for complete workflow validation
 4. Version management via `npm run release:version`
+
+#### Programmatic API Usage
+
+The project supports programmatic usage via the `ElcAgent` class:
+
+```javascript
+import { ElcAgent } from 'easy-llm-cli';
+
+const agent = new ElcAgent({
+  model: 'custom-llm-model-name',
+  apiKey: 'custom-llm-api-key',
+  endpoint: 'custom-llm-endpoint',
+  extension: {
+    mcpServers: {
+      chart: {
+        command: 'npx',
+        args: ['-y', '@antv/mcp-server-chart'],
+        trust: false,
+      },
+    },
+    excludeTools: ['run_shell_command'],
+  },
+});
+
+const result = await agent.run('Please generate a bar chart for sales data');
+```

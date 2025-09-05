@@ -179,8 +179,8 @@ export class ModelConverter {
           content: {
             parts: choice.message.tool_calls.map((toolCall) => ({
               functionCall: {
-                name: toolCall.function.name,
-                args: JSON.parse(toolCall.function.arguments),
+                name: (toolCall as any).function.name,
+                args: JSON.parse((toolCall as any).function.arguments),
               },
             })),
             role: 'model',

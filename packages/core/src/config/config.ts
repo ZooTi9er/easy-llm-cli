@@ -278,8 +278,18 @@ export class Config {
   }
 
   getModel(): string {
-    if (process.env.USE_CUSTOM_LLM) {
-      return process.env.CUSTOM_LLM_MODEL_NAME || '';
+    // 尝试从配置验证模块读取配置
+    try {
+      // 使用动态 require 来避免 ES 模块导入问题
+      const configModule = eval('require')('./index.js');
+      if (configModule.default?.USE_CUSTOM_LLM) {
+        return configModule.default.CUSTOM_LLM_MODEL_NAME || this.model;
+      }
+    } catch (error) {
+      // 如果配置模块加载失败，回退到环境变量
+      if (process.env.USE_CUSTOM_LLM) {
+        return process.env.CUSTOM_LLM_MODEL_NAME || this.model;
+      }
     }
     return this.contentGeneratorConfig?.model || this.model;
   }
