@@ -26,6 +26,7 @@ export class CustomLLMContentGenerator implements ContentGenerator {
   private temperature: number = Number(process.env.CUSTOM_LLM_TEMPERATURE || 0);
   private maxTokens: number = Number(process.env.CUSTOM_LLM_MAX_TOKENS || 8192);
   private topP: number = Number(process.env.CUSTOM_LLM_TOP_P || 1);
+  private timeout: number = Number(process.env.CUSTOM_LLM_TIMEOUT || 30000); // 30 seconds default
   private config: CustomLLMContentGeneratorConfig = {
     model: this.modelName,
     temperature: this.temperature,
@@ -37,6 +38,7 @@ export class CustomLLMContentGenerator implements ContentGenerator {
     this.model = new OpenAI({
       apiKey: this.apiKey,
       baseURL: this.baseURL,
+      timeout: this.timeout,
     });
   }
 
@@ -56,22 +58,54 @@ export class CustomLLMContentGenerator implements ContentGenerator {
   ): Promise<AsyncGenerator<GenerateContentResponse>> {
     const messages = ModelConverter.toOpenAIMessages(request);
     const tools = extractToolFunctions(request.config) || [];
-    const stream = await this.model.chat.completions.create({
-      messages,
-      stream: true,
-      tools,
-      stream_options: { include_usage: true },
-      ...this.config,
-    });
-    const map: ToolCallMap = new Map();
-    return (async function* (): AsyncGenerator<GenerateContentResponse> {
-      for await (const chunk of stream) {
-        const { response } = ModelConverter.processStreamChunk(chunk, map);
-        if (response) {
-          yield response;
+
+    try {
+      const stream = await this.model.chat.completions.create({
+        messages,
+        stream: true,
+        tools,
+        stream_options: { include_usage: true },
+        ...this.config,
+      });
+      const map: ToolCallMap = new Map();
+      return (async function* (): AsyncGenerator<GenerateContentResponse> {
+        for await (const chunk of stream) {
+          const { response, shouldReturn } = ModelConverter.processStreamChunk(
+            chunk,
+            map,
+          );
+          if (response) {
+            yield response;
+          }
+          if (shouldReturn) {
+            return;
+          }
         }
-      }
-    })();
+      })();
+    } catch (error) {
+      // Handle timeout and other errors gracefully
+      console.error('Error in generateContentStream:', error);
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorResponse = new GenerateContentResponse();
+      errorResponse.candidates = [
+        {
+          content: {
+            parts: [
+              {
+                text: `I apologize, but I encountered an error: ${errorMessage}. Please check your API configuration and try again.`,
+              },
+            ],
+            role: 'model',
+          },
+          index: 0,
+          safetyRatings: [],
+        },
+      ];
+      return (async function* (): AsyncGenerator<GenerateContentResponse> {
+        yield errorResponse;
+      })();
+    }
   }
 
   /**
@@ -87,13 +121,37 @@ export class CustomLLMContentGenerator implements ContentGenerator {
     request: GenerateContentParameters,
   ): Promise<GenerateContentResponse> {
     const messages = ModelConverter.toOpenAIMessages(request);
-    const completion = await this.model.chat.completions.create({
-      messages,
-      stream: false,
-      ...this.config,
-    });
 
-    return ModelConverter.toGeminiResponse(completion);
+    try {
+      const completion = await this.model.chat.completions.create({
+        messages,
+        stream: false,
+        ...this.config,
+      });
+
+      return ModelConverter.toGeminiResponse(completion);
+    } catch (error) {
+      // Handle timeout and other errors gracefully
+      console.error('Error in generateContent:', error);
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorResponse = new GenerateContentResponse();
+      errorResponse.candidates = [
+        {
+          content: {
+            parts: [
+              {
+                text: `I apologize, but I encountered an error: ${errorMessage}. Please check your API configuration and try again.`,
+              },
+            ],
+            role: 'model',
+          },
+          index: 0,
+          safetyRatings: [],
+        },
+      ];
+      return errorResponse;
+    }
   }
 
   /**
@@ -133,5 +191,51 @@ export class CustomLLMContentGenerator implements ContentGenerator {
     _request: EmbedContentParameters,
   ): Promise<EmbedContentResponse> {
     throw Error();
+  }
+
+  /**
+   * Validate API connectivity and model compatibility
+   */
+  async validateApi(): Promise<{ valid: boolean; error?: string }> {
+    try {
+      // Test basic connectivity
+      const modelsResponse = await fetch(`${this.baseURL}/models`, {
+        headers: {
+          Authorization: `Bearer ${this.apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        signal: AbortSignal.timeout(10000), // 10 second timeout
+      });
+
+      if (!modelsResponse.ok) {
+        return {
+          valid: false,
+          error: `API connectivity failed: ${modelsResponse.status}`,
+        };
+      }
+
+      // Test chat completion with minimal request
+      const testResponse = await this.model.chat.completions.create(
+        {
+          model: this.modelName,
+          messages: [{ role: 'user', content: 'test' }],
+          max_tokens: 5,
+          temperature: 0.1,
+        },
+        {
+          timeout: 15000, // 15 second timeout
+        },
+      );
+
+      if (!testResponse.choices || testResponse.choices.length === 0) {
+        return { valid: false, error: 'API returned empty response' };
+      }
+
+      return { valid: true };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error occurred';
+      return { valid: false, error: errorMessage };
+    }
   }
 }

@@ -25,14 +25,15 @@ const agent = new ElcAgent({
   apiKey: 'your-api-key',
   endpoint: 'https://your-llm-endpoint.com/api/v3',
   log: true,
-  readonly: false
+  readonly: false,
 });
 
 // Run a conversation
-const response = await agent.run('Hello, please help me analyze the structure of this project');
+const response = await agent.run(
+  'Hello, please help me analyze the structure of this project',
+);
 console.log(response);
 ```
-
 
 ## AgentConfig Configuration Options
 
@@ -40,26 +41,26 @@ The `ElcAgent` constructor accepts an `AgentConfig` object with the following co
 
 ### Required Configuration
 
-| Parameter | Type | Description |
-|------|------|------|
-| `model` | `string` | Custom LLM name |
-| `apiKey` | `string` | Custom LLM API key |
+| Parameter  | Type     | Description                    |
+| ---------- | -------- | ------------------------------ |
+| `model`    | `string` | Custom LLM name                |
+| `apiKey`   | `string` | Custom LLM API key             |
 | `endpoint` | `string` | Custom LLM service API address |
 
 ### Optional Configuration
 
-| Parameter | Type | Default Value | Description |
-|------|------|--------|------|
-| `authType` | `AuthType` | `AuthType.CUSTOM_LLM_API` | Authentication type |
-| `provider` | `string` | - | LLM provider name |
-| `temperature` | `number` | `0` | Generation temperature (0-1) |
-| `topP` | `number` | `1` | Top-p sampling parameter |
-| `maxTokens` | `number` | `8096` | Maximum generated tokens |
-| `log` | `boolean` | `false` | Whether to show detailed logs |
-| `readonly` | `boolean` | `false` | Read-only mode, disable file modification operations |
-| `systemPrompt` | `string` | - | System prompt |
-| `rootPath` | `string` | process.pwd() | Working directory path |
-| `extension` | `object` | - | Extension configuration |
+| Parameter      | Type       | Default Value             | Description                                          |
+| -------------- | ---------- | ------------------------- | ---------------------------------------------------- |
+| `authType`     | `AuthType` | `AuthType.CUSTOM_LLM_API` | Authentication type                                  |
+| `provider`     | `string`   | -                         | LLM provider name                                    |
+| `temperature`  | `number`   | `0`                       | Generation temperature (0-1)                         |
+| `topP`         | `number`   | `1`                       | Top-p sampling parameter                             |
+| `maxTokens`    | `number`   | `8096`                    | Maximum generated tokens                             |
+| `log`          | `boolean`  | `false`                   | Whether to show detailed logs                        |
+| `readonly`     | `boolean`  | `false`                   | Read-only mode, disable file modification operations |
+| `systemPrompt` | `string`   | -                         | System prompt                                        |
+| `rootPath`     | `string`   | process.pwd()             | Working directory path                               |
+| `extension`    | `object`   | -                         | Extension configuration                              |
 
 ## Usage Examples
 
@@ -73,7 +74,7 @@ async function basicChat() {
     model: 'gpt-4',
     apiKey: 'your-openai-api-key',
     endpoint: 'https://api.openai.com/v1',
-    log: true
+    log: true,
   });
 
   const response = await agent.run('Explain what recursion is');
@@ -90,11 +91,11 @@ async function fileOperations() {
     apiKey: 'your-anthropic-api-key',
     endpoint: 'https://api.anthropic.com/v1',
     readonly: false, // Allow file modifications
-    rootPath: '/path/to/your/project'
+    rootPath: '/path/to/your/project',
   });
 
   const response = await agent.run(
-    'Please create a simple README.md file with a project introduction'
+    'Please create a simple README.md file with a project introduction',
   );
   console.log(response);
 }
@@ -114,15 +115,15 @@ async function withExtensions() {
         chart: {
           command: 'npx',
           args: ['-y', '@antv/mcp-server-chart'],
-          trust: false
-        }
+          trust: false,
+        },
       },
-      excludeTools: ['run_shell_command']
-    }
+      excludeTools: ['run_shell_command'],
+    },
   });
 
   const response = await agent.run(
-    'Please generate a bar chart for sales data'
+    'Please generate a bar chart for sales data',
   );
   console.log(response);
 }
@@ -141,11 +142,11 @@ async function customSystemPrompt() {
 2. Provide specific improvement suggestions
 3. Explain why certain practices are better
 4. Maintain a friendly and constructive tone`,
-    log: true
+    log: true,
   });
 
   const response = await agent.run(
-    'Please review the code quality of this JavaScript function'
+    'Please review the code quality of this JavaScript function',
   );
   console.log(response);
 }
@@ -172,4 +173,3 @@ Retrieves all execution results, including content, tool invocations, errors, et
 Retrieves the text of the last AI response.
 
 **Returns**: `string`: The last response content
-  

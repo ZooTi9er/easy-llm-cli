@@ -1,5 +1,3 @@
-
-
 ![Easy LLM CLI 截图](./docs/assets/openrouter.png)
 
 <div align="center">
@@ -10,7 +8,7 @@
 
 </div>
 
-这个仓库包含了 Easy LLM CLI（[Gemini ClI](https://github.com/google-gemini/gemini-cli)  的 Fork 版本），一个连接到您的工具、理解您的代码并加速您工作流程的命令行 AI 工具。它支持多种 LLM 提供商，包括 Gemini、OpenAI 以及任何遵循 OpenAI API 格式的自定义 LLM API。
+这个仓库包含了 Easy LLM CLI（[Gemini ClI](https://github.com/google-gemini/gemini-cli) 的 Fork 版本），一个连接到您的工具、理解您的代码并加速您工作流程的命令行 AI 工具。它支持多种 LLM 提供商，包括 Gemini、OpenAI 以及任何遵循 OpenAI API 格式的自定义 LLM API。
 
 使用 Easy LLM CLI，您可以：
 
@@ -25,23 +23,23 @@
 
 本方案已经对多种不同提供商、模型以及本地部署的模型进行了多个维度（是否具备思考过程、能否完成简单任务、是否具备工具调用能力、是否具备多模态能力、是否具备复杂任务能力、是否可以统计 Toekn）的测试，以下是测试结果：
 
-|  模型 | 思考过程 | 简单任务 | 工具调用 | MCP 调用 | 复杂任务 | 多模态 | Token 统计 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 【Google】Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Moonshot】kimi-k2 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| 【Volcengine】Doubao-1.5-Pro | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Volcengine】DeepSeek-V3 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Bailian】Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】DeepSeek-R1--32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Ollama】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 模型                          | 思考过程 | 简单任务 | 工具调用 | MCP 调用 | 复杂任务 | 多模态 | Token 统计 |
+| ----------------------------- | -------- | -------- | -------- | -------- | -------- | ------ | ---------- | --- |
+| 【Google】Gemini-2.5-pro      | ✅       | ✅       | ✅       | ✅       | ✅       | ✅     | ✅         | ✅  |
+| 【OpenRouter】Claude Sonnet 4 | ✅       | ✅       | ✅       | ✅       | ✅       | ✅     | ✅         | ✅  |
+| 【OpenRouter】Gpt-4.1         | ✅       | ✅       | ✅       | ✅       | ✅       | ✅     | ✅         | ✅  |
+| 【OpenRouter】Grok-4          | ✅       | ✅       | ✅       | ✅       | ✅       | ✅     | ✅         | ✅  |
+| 【Volcengine】Doubao-Seed-1.6 | ✅       | ✅       | ✅       | ✅       | ✅       | ✅     | ✅         | ✅  |
+| 【Bailian】Qwen3-Plus         | ✅       | ✅       | ✅       | ✅       | ✅       | ✅     | ✅         |
+| 【Moonshot】kimi-k2           | ✅       | ✅       | ✅       | ✅       | ✅       | ❌     | ✅         |
+| 【Volcengine】DeepSeek-R1     | ✅       | ✅       | ✅       | ✅       | ✅       | ❌     | ✅         |
+| 【Siliconflow】DeepSeek-R1    | ✅       | ✅       | ✅       | ✅       | ✅       | ❌     | ✅         |
+| 【Volcengine】Doubao-1.5-Pro  | ❌       | ✅       | ✅       | ✅       | ⚠️       | ❌     | ✅         |
+| 【Volcengine】DeepSeek-V3     | ❌       | ✅       | ✅       | ✅       | ⚠️       | ❌     | ✅         |
+| 【Bailian】Qwen3-235b-a22b    | ✅       | ✅       | ✅       | ✅       | ⚠️       | ❌     | ✅         |
+| 【vLLM】Qwen2.5-7B-Instruct   | ❌       | ✅       | ✅       | ✅       | ⚠️       | ❌     | ✅         |
+| 【vLLM】DeepSeek-R1--32B      | ✅       | ✅       | ✅       | ✅       | ⚠️       | ❌     | ✅         |
+| 【Ollama】Qwen2.5-7B-Instruct | ❌       | ✅       | ✅       | ✅       | ⚠️       | ❌     | ✅         |
 
 ## 快速开始
 
@@ -78,7 +76,6 @@ export CUSTOM_LLM_TOP_P=1          # Top P 参数（默认值：1）
 
 当这些变量设置后，Easy LLM 命令行工具将使用你的自定义 LLM，而非默认的 Gemini 模型。
 
-
 ## 示例
 
 一旦 CLI 运行起来，你就可以从 shell 中与 Gemini 交互了。
@@ -105,24 +102,24 @@ elc
 Easy LLM 支持直接在代码中通过 NPM 引入并使用：
 
 ```js
-  import { ElcAgent } from 'easy-llm-cli';
-  const agent = new ElcAgent({
-    model: 'custom-llm-model-name',
-    apiKey: 'custom-llm-api-key',
-    endpoint: 'custom-llm-endpoint',
-    extension: {
-      mcpServers: {
-        chart: {
-          command: 'npx',
-          args: ['-y', '@antv/mcp-server-chart'],
-          trust: false
-        }
+import { ElcAgent } from 'easy-llm-cli';
+const agent = new ElcAgent({
+  model: 'custom-llm-model-name',
+  apiKey: 'custom-llm-api-key',
+  endpoint: 'custom-llm-endpoint',
+  extension: {
+    mcpServers: {
+      chart: {
+        command: 'npx',
+        args: ['-y', '@antv/mcp-server-chart'],
+        trust: false,
       },
-      excludeTools: ['run_shell_command']
-    }
-  });
-  const result = await agent.run('请帮我生成一个销售数据的柱状图');
-  console.log(result);
+    },
+    excludeTools: ['run_shell_command'],
+  },
+});
+const result = await agent.run('请帮我生成一个销售数据的柱状图');
+console.log(result);
 ```
 
 - 查看 API 调用详细文档：[Programmatic API](./docs/programmatic-api.zh-CN.md)

@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:gb-docs.snaily.top)",
+      "Bash(chmod:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(curl:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run start:*)",
+      "Bash(./check-config.sh:*)",
+      "Bash(env:*)",
+      "Bash(unset:*)",
+      "Bash(set:*)",
+      "Bash(source:*)",
+      "Bash(./diagnose-api.sh:*)",
+      "Bash(timeout:*)",
+      "Bash(node:*)",
+      "mcp__zen__debug",
+      "Bash(./bundle/gemini.js:*)",
+      "Bash(export:*)",
+      "Bash(cat:*)",
+      "Bash(/dev/null)",
+      "Bash(echo:*)"
+    ],
+    "deny": []
+  }
+}

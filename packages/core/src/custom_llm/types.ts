@@ -12,6 +12,7 @@ export interface CustomLLMContentGeneratorConfig {
   temperature: number;
   max_tokens: number;
   top_p: number;
+  timeout?: number;
   stream_options?: {
     include_usage?: boolean;
   };

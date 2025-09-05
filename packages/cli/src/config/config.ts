@@ -209,7 +209,7 @@ export async function loadCliConfig(
   let argv = {} as CliArgs;
   if (!disableReadArgs) {
     argv = await parseArguments();
-  } 
+  }
   const debugMode =
     argv.debug ||
     [process.env.DEBUG, process.env.DEBUG_MODE].some(

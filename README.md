@@ -11,7 +11,6 @@
 This repository contains the Easy LLM CLI（[Gemini Cli](https://github.com/google-gemini/gemini-cli) version of the Fork）, a command-line AI workflow tool that connects to your
 tools, understands your code and accelerates your workflows. It supports multiple LLM providers including Gemini, OpenAI, and any custom LLM API that follows OpenAI's API format.
 
-
 With the Easy LLM CLI you can:
 
 - Query and edit large codebases using advanced LLM capabilities with large context windows.
@@ -25,23 +24,23 @@ With the Easy LLM CLI you can:
 
 This plan has conducted tests on various models from different providers as well as locally deployed models across multiple dimensions, including whether they have thinking chain, whether they can complete simple tasks, whether they have tool - calling capabilities, whether they have multimodal capabilities, whether they have complex task capabilities, and whether they can count tokens. The following are the test results:
 
-| Model | COT | Simple | Tool | MCP | Complex | Multimodal | Token |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 【Google】Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Moonshot】kimi-k2 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| 【Siliconflow】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| 【Volcengine】Doubao-1.5-Pro | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Volcengine】DeepSeek-V3 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Bailian】Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】DeepSeek-R1-32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【Ollama】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| Model                         | COT | Simple | Tool | MCP | Complex | Multimodal | Token |
+| ----------------------------- | --- | ------ | ---- | --- | ------- | ---------- | ----- |
+| 【Google】Gemini-2.5-pro      | ✅  | ✅     | ✅   | ✅  | ✅      | ✅         | ✅    |
+| 【OpenRouter】Claude Sonnet 4 | ✅  | ✅     | ✅   | ✅  | ✅      | ✅         | ✅    |
+| 【OpenRouter】Gpt-4.1         | ✅  | ✅     | ✅   | ✅  | ✅      | ✅         | ✅    |
+| 【OpenRouter】Grok-4          | ✅  | ✅     | ✅   | ✅  | ✅      | ✅         | ✅    |
+| 【Volcengine】Doubao-Seed-1.6 | ✅  | ✅     | ✅   | ✅  | ✅      | ✅         | ✅    |
+| 【Bailian】Qwen3-Plus         | ✅  | ✅     | ✅   | ✅  | ✅      | ✅         | ✅    |
+| 【Moonshot】kimi-k2           | ✅  | ✅     | ✅   | ✅  | ✅      | ❌         | ✅    |
+| 【Volcengine】DeepSeek-R1     | ✅  | ✅     | ✅   | ✅  | ✅      | ❌         | ✅    |
+| 【Siliconflow】DeepSeek-R1    | ✅  | ✅     | ✅   | ✅  | ✅      | ❌         | ✅    |
+| 【Volcengine】Doubao-1.5-Pro  | ❌  | ✅     | ✅   | ✅  | ⚠️      | ❌         | ✅    |
+| 【Volcengine】DeepSeek-V3     | ❌  | ✅     | ✅   | ✅  | ⚠️      | ❌         | ✅    |
+| 【Bailian】Qwen3-235b-a22b    | ✅  | ✅     | ✅   | ✅  | ⚠️      | ❌         | ✅    |
+| 【vLLM】Qwen2.5-7B-Instruct   | ❌  | ✅     | ✅   | ✅  | ⚠️      | ❌         | ✅    |
+| 【vLLM】DeepSeek-R1-32B       | ✅  | ✅     | ✅   | ✅  | ⚠️      | ❌         | ✅    |
+| 【Ollama】Qwen2.5-7B-Instruct | ❌  | ✅     | ✅   | ✅  | ⚠️      | ❌         | ✅    |
 
 ## Quickstart
 
@@ -59,14 +58,13 @@ This plan has conducted tests on various models from different providers as well
    elc
    ```
 
-
 ## Custom LLM Configuration
 
 Easy LLM CLI supports connecting to any OpenAI-compatible LLM API. You can configure your preferred LLM using these environment variables:
 
 ```bash
 # Enable custom LLM support
-export USE_CUSTOM_LLM=true 
+export USE_CUSTOM_LLM=true
 
 export CUSTOM_LLM_PROVIDER="openai"  # LLM provider
 export CUSTOM_LLM_API_KEY="your-api-key"     # Your LLM provider API key
@@ -80,7 +78,6 @@ export CUSTOM_LLM_TOP_P=1          # Top P (default: 1)
 ```
 
 When these variables are set, Easy LLM CLI will use your custom LLM instead of the default Gemini model.
-
 
 ## Examples
 
@@ -119,11 +116,11 @@ const agent = new ElcAgent({
       chart: {
         command: 'npx',
         args: ['-y', '@antv/mcp-server-chart'],
-        trust: false
-      }
+        trust: false,
+      },
     },
-    excludeTools: ['run_shell_command']
-  }
+    excludeTools: ['run_shell_command'],
+  },
 });
 
 const result = await agent.run('Please generate a bar chart for sales data');
@@ -131,7 +128,6 @@ console.log(result);
 ```
 
 - View detailed API documentation: [Programmatic API](./docs/programmatic-api.md)
-
 
 ### Next steps
 
@@ -191,4 +187,3 @@ Use MCP servers to integrate your local system tools with your enterprise collab
 ```text
 > Organize my PDF invoices by month of expenditure.
 ```
-

@@ -137,7 +137,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['./**/*.{tsx,ts,js}']
+    files: ['./**/*.{tsx,ts,js}'],
   },
   // extra settings for scripts that we run directly with node
   {

@@ -101,7 +101,12 @@ export async function main() {
   }
 
   const extensions = loadExtensions(workspaceRoot);
-  const config = await loadCliConfig(settings.merged, extensions, sessionId, false);
+  const config = await loadCliConfig(
+    settings.merged,
+    extensions,
+    sessionId,
+    false,
+  );
 
   if (config.getListExtensions()) {
     console.log('Installed extensions:');

@@ -11,7 +11,7 @@ import {
   ToolCallRequestInfo,
   CoreToolScheduler,
   ApprovalMode,
-  closeAllMCPConnections
+  closeAllMCPConnections,
 } from '@google/gemini-cli-core';
 import { type Part } from '@google/genai';
 import { AgentConfig, AgentResult } from './types.js';
@@ -40,7 +40,7 @@ export class ElcAgent {
       rootPath,
       extension,
       systemPrompt,
-      disableReadArgs
+      disableReadArgs,
     } = agentConfig;
     this.showLog = log || false;
     this.extension = extension;
@@ -83,7 +83,12 @@ export class ElcAgent {
     const extensions: any = this.extension
       ? [{ config: this.extension }]
       : loadExtensions(workspaceRoot);
-    const config = await loadCliConfig(settings.merged, extensions, sessionId,this.disableReadArgs);
+    const config = await loadCliConfig(
+      settings.merged,
+      extensions,
+      sessionId,
+      this.disableReadArgs,
+    );
 
     settings.setValue(
       SettingScope.User,

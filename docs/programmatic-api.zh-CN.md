@@ -25,7 +25,7 @@ const agent = new ElcAgent({
   apiKey: 'your-api-key',
   endpoint: 'https://your-llm-endpoint.com/api/v3',
   log: true,
-  readonly: false
+  readonly: false,
 });
 
 // 运行对话
@@ -39,26 +39,26 @@ console.log(response);
 
 ### 必需配置
 
-| 参数 | 类型 | 描述 |
-|------|------|------|
-| `model` | `string` | 自定义 LLM 名称 |
-| `apiKey` | `string` | 自定义 LLM API 密钥 |
+| 参数       | 类型     | 描述                     |
+| ---------- | -------- | ------------------------ |
+| `model`    | `string` | 自定义 LLM 名称          |
+| `apiKey`   | `string` | 自定义 LLM API 密钥      |
 | `endpoint` | `string` | 自定义 LLM 服务 API 地址 |
 
 ### 可选配置
 
-| 参数 | 类型 | 默认值 | 描述 |
-|------|------|--------|------|
-| `authType` | `AuthType` | `AuthType.CUSTOM_LLM_API` | 认证类型 |
-| `provider` | `string` | - | LLM 提供商名称 |
-| `temperature` | `number` | `0` | 生成温度 (0-1) |
-| `topP` | `number` | `1` | Top-p 采样参数 |
-| `maxTokens` | `number` | `8096` | 最大生成 token 数 |
-| `log` | `boolean` | `false` | 是否显示详细日志 |
-| `readonly` | `boolean` | `false` | 只读模式，禁用文件修改操作 |
-| `systemPrompt` | `string` | - | 系统提示词 |
-| `rootPath` | `string` | process.pwd() | 工作目录路径 |
-| `extension` | `object` | - | 扩展配置 |
+| 参数           | 类型       | 默认值                    | 描述                       |
+| -------------- | ---------- | ------------------------- | -------------------------- |
+| `authType`     | `AuthType` | `AuthType.CUSTOM_LLM_API` | 认证类型                   |
+| `provider`     | `string`   | -                         | LLM 提供商名称             |
+| `temperature`  | `number`   | `0`                       | 生成温度 (0-1)             |
+| `topP`         | `number`   | `1`                       | Top-p 采样参数             |
+| `maxTokens`    | `number`   | `8096`                    | 最大生成 token 数          |
+| `log`          | `boolean`  | `false`                   | 是否显示详细日志           |
+| `readonly`     | `boolean`  | `false`                   | 只读模式，禁用文件修改操作 |
+| `systemPrompt` | `string`   | -                         | 系统提示词                 |
+| `rootPath`     | `string`   | process.pwd()             | 工作目录路径               |
+| `extension`    | `object`   | -                         | 扩展配置                   |
 
 ## 使用示例
 
@@ -72,7 +72,7 @@ async function basicChat() {
     model: 'gpt-4',
     apiKey: 'your-openai-api-key',
     endpoint: 'https://api.openai.com/v1',
-    log: true
+    log: true,
   });
 
   const response = await agent.run('解释一下什么是递归');
@@ -89,11 +89,11 @@ async function fileOperations() {
     apiKey: 'your-anthropic-api-key',
     endpoint: 'https://api.anthropic.com/v1',
     readonly: false, // 允许文件修改
-    rootPath: '/path/to/your/project'
+    rootPath: '/path/to/your/project',
   });
 
   const response = await agent.run(
-    '请帮我创建一个简单的 README.md 文件，包含项目介绍'
+    '请帮我创建一个简单的 README.md 文件，包含项目介绍',
   );
   console.log(response);
 }
@@ -113,16 +113,14 @@ async function withExtensions() {
         chart: {
           command: 'npx',
           args: ['-y', '@antv/mcp-server-chart'],
-          trust: false
-        }
+          trust: false,
+        },
       },
-      excludeTools: ['run_shell_command']
-    }
+      excludeTools: ['run_shell_command'],
+    },
   });
 
-  const response = await agent.run(
-    '请帮我生成一个销售数据的柱状图'
-  );
+  const response = await agent.run('请帮我生成一个销售数据的柱状图');
   console.log(response);
 }
 ```
@@ -140,12 +138,10 @@ async function customSystemPrompt() {
 2. 提供具体的改进建议
 3. 解释为什么某些做法更好
 4. 保持友好和建设性的语调`,
-    log: true
+    log: true,
   });
 
-  const response = await agent.run(
-    '请审查这个 JavaScript 函数的代码质量'
-  );
+  const response = await agent.run('请审查这个 JavaScript 函数的代码质量');
   console.log(response);
 }
 ```

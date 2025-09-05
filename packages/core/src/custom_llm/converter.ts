@@ -189,6 +189,22 @@ export class ModelConverter {
           safetyRatings: [],
         },
       ];
+    } else {
+      // Handle empty response - provide a fallback message
+      res.candidates = [
+        {
+          content: {
+            parts: [
+              {
+                text: 'I apologize, but I received an empty response. Please try again or check your API configuration.',
+              },
+            ],
+            role: 'model',
+          },
+          index: 0,
+          safetyRatings: [],
+        },
+      ];
     }
     res.usageMetadata = {
       promptTokenCount: response.usage?.prompt_tokens || 0,
